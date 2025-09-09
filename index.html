@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>한채빈 돌잔치 초대장</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="antialiased">
+  <div id="root"></div>
+
+  <!-- React 18 / ReactDOM CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel (브라우저에서 JSX 변환용: 간편 배포용으로 OK) -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function Invitation() {
+      const [showCopied, setShowCopied] = useState(false);
+
+      const handleCopyLink = async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          setShowCopied(true);
+          setTimeout(() => setShowCopied(false), 2000);
+        } catch (e) {
+          alert("링크 복사에 실패했어요. 주소창의 링크를 직접 복사해주세요.");
+        }
+      };
+
+      const scrollToId = (id) => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      };
+
+      return (
+        <div className="min-h-screen bg-gradient-to-b from-rose-50 via-amber-50 to-white text-zinc-800">
+          <header className="relative overflow-hidden">
+            <div className="absolute inset-0 -z-10 opacity-70">
+              <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 560" aria-hidden>
+                <defs>
+                  <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0%" stopColor="#fde68a" />
+                    <stop offset="50%" stopColor="#fecdd3" />
+                    <stop offset="100%" stopColor="#e9d5ff" />
+                  </linearGradient>
+                </defs>
+                <rect width="1440" height="560" fill="url(#g1)" />
+              </svg>
+            </div>
+
+            <div className="mx-auto max-w-3xl px-6 pt-14 pb-10 sm:pt-20 sm:pb-16">
+              <div className="flex items-center justify-between gap-4">
+                <h1 className="text-xl font-semibold tracking-tight">Chaebin's 1st Birthday</h1>
+                <nav className="flex gap-2 text-sm">
+                  <button onClick={() => scrollToId("about")} className="rounded-full px-3 py-1 bg-white/70 hover:bg-white shadow-sm">초대</button>
+                  <button onClick={() => scrollToId("schedule")} className="rounded-full px-3 py-1 bg-white/70 hover:bg-white shadow-sm">일정</button>
+                  <button onClick={() => scrollToId("location")} className="rounded-full px-3 py-1 bg-white/70 hover:bg-white shadow-sm">오시는 길</button>
+                  <button onClick={() => scrollToId("parking")} className="rounded-full px-3 py-1 bg-white/70 hover:bg-white shadow-sm">주차 안내</button>
+                </nav>
+              </div>
+
+              <div className="mt-10 rounded-3xl bg-white/70 backdrop-blur shadow-xl p-6 sm:p-10 text-center">
+                <p className="text-sm uppercase tracking-widest text-zinc-500">첫돌 초대장</p>
+                <h2 className="mt-2 text-3xl sm:text-4xl font-bold">한채빈 첫돌</h2>
+                <p className="mt-3 text-zinc-600 leading-relaxed">
+                  사랑으로 자라온 365일. 소중한 분들을 모시고 채빈이의 첫 번째 생일을 함께 축복하고자 합니다.
+                </p>
+
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                  <div className="rounded-2xl border bg-white p-4">
+                    <div className="font-medium">날짜</div>
+                    <div className="mt-1">2025년 9월 20일 (토)</div>
+                  </div>
+                  <div className="rounded-2xl border bg-white p-4">
+                    <div className="font-medium">시간</div>
+                    <div className="mt-1">오후 5:00</div>
+                  </div>
+                  <div className="rounded-2xl border bg-white p-4">
+                    <div className="font-medium">장소</div>
+                    <div className="mt-1">신라스테이 역삼</div>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <a
+                    href="https://map.naver.com/v5/search/%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC"
+                    className="rounded-full px-5 py-3 bg-zinc-900 text-white hover:bg-zinc-800"
+                    target="_blank" rel="noreferrer"
+                  >지도 열기 (네이버)</a>
+                  <a
+                    href="https://maps.google.com/?q=%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC"
+                    className="rounded-full px-5 py-3 bg-white border hover:bg-zinc-50"
+                    target="_blank" rel="noreferrer"
+                  >지도 열기 (Google)</a>
+                  <button onClick={handleCopyLink} className="rounded-full px-5 py-3 bg-white border hover:bg-zinc-50">링크 복사</button>
+                </div>
+
+                {showCopied && <div className="mt-2 text-sm text-emerald-600">링크가 복사되었습니다!</div>}
+              </div>
+
+              <div className="mt-8">
+                <div className="relative aspect-[16/9] w-full rounded-3xl overflow-hidden">
+                  <img
+                    src="https://raw.githubusercontent.com/namehdw-web/chaebin-birthday/main/%EC%B1%84%EB%B9%88_test.jpg"
+                    alt="chaebin"
+                    className="w-full h-full object-cover rounded-3xl"
+                  />
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <main className="mx-auto max-w-3xl px-6 pb-24">
+            <section id="about" className="mt-14">
+              <h3 className="text-2xl font-semibold">초대의 글</h3>
+              <p className="mt-3 leading-relaxed text-zinc-700">
+                어느덧 우리 아이가 태어난 지 1년. 소중한 분들의 사랑 속에 건강히 자란 채빈이의 첫돌을 함께 축복해 주세요.
+                따뜻한 마음 모아 주시는 발걸음이 큰 기쁨이 됩니다.
+              </p>
+            </section>
+
+            <section id="schedule" className="mt-12">
+              <h3 className="text-2xl font-semibold">행사 일정</h3>
+              <div className="mt-4 grid gap-3 sm:grid-cols-1">
+                <div className="rounded-2xl border bg-white p-5">
+                  <div className="text-sm text-zinc-500">행사 시작</div>
+                  <div className="mt-1 font-medium">17:00</div>
+                </div>
+              </div>
+            </section>
+
+            <section id="location" className="mt-12">
+              <h3 className="text-2xl font-semibold">오시는 길</h3>
+              <p className="mt-3 text-zinc-700">신라스테이 역삼 · 서울특별시 강남구</p>
+              <div className="mt-4 rounded-2xl overflow-hidden border">
+                <iframe
+                  title="map"
+                  className="w-full h-[320px]"
+                  loading="lazy"
+                  src="https://maps.google.com/maps?q=%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC&output=embed"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </section>
+
+            <section id="parking" className="mt-12">
+              <h3 className="text-2xl font-semibold">주차 안내</h3>
+              <p className="mt-3 text-zinc-700">행사장 건물 내 주차장을 이용하실 수 있습니다. (3시간 무료)</p>
+              <p className="mt-2 text-sm text-zinc-500">* 주차 확인권은 행사장 안내 데스크에서 수령 가능합니다.</p>
+            </section>
+          </main>
+
+          <footer className="border-t bg-white/70">
+            <div className="mx-auto max-w-3xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="text-sm text-zinc-600">© 2025 Chaebin's 1st Birthday</div>
+              <div className="flex items-center gap-2">
+                <button onClick={handleCopyLink} className="rounded-full px-4 py-2 bg-zinc-900 text-white hover:bg-zinc-800 text-sm">링크 복사</button>
+                <a href="#about" className="rounded-full px-4 py-2 bg-white border hover:bg-zinc-50 text-sm"
+                   onClick={(e) => { e.preventDefault(); document.getElementById('about').scrollIntoView({behavior:'smooth'}); }}>맨 위로</a>
+              </div>
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Invitation />);
+  </script>
+</body>
+</html>
