@@ -1,113 +1,153 @@
-<!doctype html>
-<html lang="ko">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>한채빈 첫돌 초대장</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="antialiased">
-  <div class="min-h-screen bg-gradient-to-b from-rose-50 via-amber-50 to-white text-zinc-800">
-    <header class="relative overflow-hidden">
-      <div class="absolute inset-0 -z-10 opacity-70 pointer-events-none" aria-hidden>
-        <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1440 560">
-          <defs>
-            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stop-color="#fde68a" />
-              <stop offset="50%" stop-color="#fecdd3" />
-              <stop offset="100%" stop-color="#e9d5ff" />
-            </linearGradient>
-          </defs>
-          <rect width="1440" height="560" fill="url(#g1)" />
-        </svg>
-      </div>
+import React from "react";
 
-      <div class="mx-auto max-w-3xl px-6 pt-14 pb-10 sm:pt-20 sm:pb-16">
-        <div class="flex items-center justify-between gap-4">
-          <h1 class="text-xl font-semibold tracking-tight">🎂 Chaebin's 1st Birthday 🎉</h1>
-          <nav class="flex gap-2 text-sm">
-            <a href="#location" class="rounded-full px-3 py-1 bg-white/70 hover:bg-white shadow-sm">오시는 길</a>
-            <a href="#parking" class="rounded-full px-3 py-1 bg-white/70 hover:bg-white shadow-sm">주차 안내</a>
-          </nav>
-        </div>
+const Invitation: React.FC = () => {
+  const data = {
+    title: "🎂 Chaebin's 1st Birthday 🎉",
+    subtitle: "💌 첫돌 초대장 🎈",
+    name: "한채빈 첫돌 🥰",
+    intro: [
+      "아기 채빈이가 여러분의 사랑 속에서 무럭무럭 자라",
+      "첫 생일을 맞이했습니다. 🐉🎂🎈",
+      "따뜻한 축하로 함께해 주신다면",
+      "저희 가족의 큰 행복으로 간직하겠습니다. 💕🌟",
+    ],
+    date: "2025년 9월 20일 (토)",
+    time: "오후 5:00",
+    location: "신라스테이 역삼 Cafe (3층)",
+    imageUrl:
+      "https://raw.githubusercontent.com/namehdw-web/chaebin-birthday/main/%EC%B1%84%EB%B9%88_birth2.jpg",
+    naverMap:
+      "https://map.naver.com/v5/search/%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC",
+    googleMap:
+      "https://maps.google.com/?q=%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC",
+    parking: "🚗 행사장 건물 내 주차장을 이용하실 수 있습니다. (3시간 무료)",
+    directions: [
+      "🚇 지하철 2호선 역삼역 3번 출구 도보 5분",
+      "🚌 버스 간선 146, 341, 360 → 역삼역 하차 후 도보 3분",
+    ],
+  } as const;
 
-        <div class="mt-10 rounded-3xl bg-white/70 backdrop-blur shadow-xl p-6 sm:p-10 text-center">
-          <p class="text-sm uppercase tracking-widest text-zinc-500">💌 첫돌 초대장</p>
-          <h2 class="mt-2 text-3xl sm:text-4xl font-bold">한채빈 첫돌 🥰</h2>
-          <p class="mt-3 text-zinc-600 leading-relaxed">
-            <span class="block">우리 가정에 행복과 기쁨을 알게 해준</span>
-            <span class="block">소중한 아이 채빈이가</span>
-            <span class="block">첫 생일을 맞았습니다 🥰</span>
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-rose-50 via-amber-50 to-white text-zinc-800">
+      <header className="relative overflow-hidden">
+        <div className="mx-auto max-w-3xl px-6 pt-14 pb-10 sm:pt-20 sm:pb-16">
+          <h1 className="text-xl font-semibold tracking-tight">{data.title}</h1>
 
-            <span class="block mt-3">세상에서 맞는 첫 생일을</span>
-            <span class="block">소중한 분들과 뜻깊게 보내고자 합니다 🌈</span>
+          <div className="mt-10 rounded-3xl bg-white/70 backdrop-blur shadow-xl p-6 sm:p-10 text-center">
+            <p className="text-sm uppercase tracking-widest text-zinc-500">
+              {data.subtitle}
+            </p>
+            <h2 className="mt-2 text-3xl sm:text-4xl font-bold">{data.name}</h2>
+            <p className="mt-3 text-zinc-600 leading-relaxed">
+              {data.intro.map((line, idx) => (
+                <span key={idx} className="block mt-1">
+                  {line}
+                </span>
+              ))}
+            </p>
 
-            <span class="block mt-3">정성껏 준비했으니</span>
-            <span class="block">참석해주시면 큰 기쁨이 되겠습니다 🙏</span>
-          </p>
-
-          <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-            <div class="rounded-2xl border bg-white p-4">
-              <div class="font-medium">📅 날짜</div>
-              <div class="mt-1">2025년 9월 20일 (토)</div>
+            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+              <div className="rounded-2xl border bg-white p-4">
+                <div className="font-medium">📅 날짜</div>
+                <div className="mt-1">{data.date}</div>
+              </div>
+              <div className="rounded-2xl border bg-white p-4">
+                <div className="font-medium">⏰ 시간</div>
+                <div className="mt-1">{data.time}</div>
+              </div>
+              <div className="rounded-2xl border bg-white p-4">
+                <div className="font-medium">📍 장소</div>
+                <div className="mt-1">{data.location}</div>
+              </div>
             </div>
-            <div class="rounded-2xl border bg-white p-4">
-              <div class="font-medium">⏰ 시간</div>
-              <div class="mt-1">오후 5:00</div>
-            </div>
-            <div class="rounded-2xl border bg-white p-4">
-              <div class="font-medium">📍 장소</div>
-              <div class="mt-1">신라스테이 역삼 Cafe (3층)</div>
+
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={data.naverMap}
+                className="rounded-full px-5 py-3 bg-zinc-900 text-white hover:bg-zinc-800"
+                target="_blank"
+                rel="noreferrer"
+              >
+                📍 지도 열기 (네이버)
+              </a>
+              <a
+                href={data.googleMap}
+                className="rounded-full px-5 py-3 bg-white border hover:bg-zinc-50"
+                target="_blank"
+                rel="noreferrer"
+              >
+                📍 지도 열기 (Google)
+              </a>
             </div>
           </div>
 
-          <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="https://map.naver.com/v5/search/%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC" class="rounded-full px-5 py-3 bg-zinc-900 text-white hover:bg-zinc-800" target="_blank">📍 지도 열기 (네이버)</a>
-            <a href="https://maps.google.com/?q=%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC" class="rounded-full px-5 py-3 bg-white border hover:bg-zinc-50" target="_blank">📍 지도 열기 (Google)</a>
+          <div className="mt-8">
+            <div className="relative w-full rounded-3xl overflow-hidden">
+              <img
+                src={data.imageUrl}
+                alt="chaebin"
+                className="w-full h-auto object-contain rounded-3xl"
+              />
+            </div>
           </div>
         </div>
+      </header>
 
-        <div class="mt-8">
-          <div class="relative w-full rounded-3xl overflow-hidden">
-            <img
-              src="https://raw.githubusercontent.com/namehdw-web/chaebin-birthday/main/%EC%B1%84%EB%B9%88_birth2.jpg"
-              alt="chaebin"
-              class="w-full h-auto object-contain rounded-3xl"
-            />
+      <main className="mx-auto max-w-3xl px-6 pb-24">
+        <section id="location" className="mt-12">
+          <h3 className="text-2xl font-semibold">📍 오시는 길</h3>
+          <p className="mt-3 text-zinc-700">{data.location} · 서울특별시 강남구</p>
+          <div className="mt-2 text-zinc-600 text-sm leading-relaxed">
+            {data.directions.map((d, idx) => (
+              <div key={idx}>{d}</div>
+            ))}
+          </div>
+          <div className="mt-4 rounded-2xl overflow-hidden border">
+            <iframe
+              title="map"
+              className="w-full h-[320px]"
+              loading="lazy"
+              src="https://maps.google.com/maps?q=%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC&output=embed"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </section>
+
+        <section id="parking" className="mt-12">
+          <h3 className="text-2xl font-semibold">🅿️ 주차 안내</h3>
+          <p className="mt-3 text-zinc-700">{data.parking}</p>
+        </section>
+      </main>
+
+      <footer className="border-t bg-white/70">
+        <div className="mx-auto max-w-3xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-sm text-zinc-600">© 2025 Chaebin's 1st Birthday 🎂</div>
+          <div className="flex items-center gap-2">
+            <a
+              href="#top"
+              className="rounded-full px-4 py-2 bg-white border hover:bg-zinc-50 text-sm"
+            >
+              ⬆️ 맨 위로
+            </a>
           </div>
         </div>
-      </div>
-    </header>
+      </footer>
+    </div>
+  );
+};
 
-    <main class="mx-auto max-w-3xl px-6 pb-24">
-      <section id="location" class="mt-12">
-        <h3 class="text-2xl font-semibold">📍 오시는 길</h3>
-        <p class="mt-3 text-zinc-700">신라스테이 역삼 Cafe (3층) · 서울특별시 강남구</p>
-        <div class="mt-4 rounded-2xl overflow-hidden border">
-          <iframe
-            title="map"
-            class="w-full h-[320px]"
-            loading="lazy"
-            src="https://maps.google.com/maps?q=%EC%8B%A0%EB%9D%BC%EC%8A%A4%ED%85%8C%EC%9D%B4%20%EC%97%AD%EC%82%BC&output=embed"
-            allowfullscreen
-          ></iframe>
-        </div>
-      </section>
+export default Invitation;
 
-      <section id="parking" class="mt-12">
-        <h3 class="text-2xl font-semibold">🅿️ 주차 안내</h3>
-        <p class="mt-3 text-zinc-700">🚗 행사장 건물 내 주차장을 이용하실 수 있습니다. (3시간 무료)</p>
-      </section>
-    </main>
+// --- Tests ---
+test("renders title correctly", () => {
+  const comp = Invitation({});
+  expect(comp.props.children[0].props.children.props.children).toContain(
+    "Chaebin's 1st Birthday"
+  );
+});
 
-    <footer class="border-t bg-white/70">
-      <div class="mx-auto max-w-3xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div class="text-sm text-zinc-600">© 2025 Chaebin's 1st Birthday 🎂</div>
-        <div class="flex items-center gap-2">
-          <a href="#top" class="rounded-full px-4 py-2 bg-white border hover:bg-zinc-50 text-sm">⬆️ 맨 위로</a>
-        </div>
-      </div>
-    </footer>
-  </div>
-</body>
-</html>
+test("contains image with correct src", () => {
+  const comp = Invitation({});
+  const html = JSON.stringify(comp);
+  expect(html).toContain("chaebin_birth2.jpg");
+});
